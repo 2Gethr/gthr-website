@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="demoApp">
+    <head>
+        <meta charset="utf-8" />
+        <title>Todo List</title>        
+        <link rel="stylesheet" href="style.css">
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <script src="angular/angular.js"></script>
+        <script src="script.js"></script>
+    </head>
+<!DOCTYPE html>
+<html lang="fr" ng-app="demoApp">
+    <head>
+        <meta charset="utf-8" />
+        <title>Todo List</title>        
+        <link rel="stylesheet" href="web/css/style.css">
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/todoList.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Todo List</h1>
+        </header>
+        <section ng-controller="todoCtrl">
+            <form id="todo-form" ng-submit="addTodo()">
+                <input id="new-todo" placeholder="Que devez-vous faire ?" ng-model="newTodo" />
+            </form>
+            <article ng-show="todos.length">
+                <ul id="todo-list">
+                    <li ng-repeat="todo in todos" ng-class="{completed: todo.completed}">
+                        <div class="view">
+                            <input class="mark" type="checkbox" ng-model="todo.completed" />
+                            <span>{{todo.title}}</span>
+                            <span class="close" ng-click="removeTodo(todo)">x</span>
+                        </div>
+                    </li>
+                </ul>
+                <input id="mark-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)" />
+                <label class="btn btn-info" for="mark-all">Tout cocher</label>
+                <button class="btn btn-danger" ng-click="clearCompletedTodos()">Supprimer les tâches cochées</button>
+            </article>
+        </section>
+    </body>
+</html>
