@@ -1,5 +1,18 @@
-console.log('Well done!');
-console.log('You\'re pretty awesome.');
-console.log('JS files are correctly served :)\n\n\n');
-console.log('I want a Mojito.');
-console.log('Or more...');
+var app = angular.module('gthr', ['ui.router']);
+
+app.config(['$stateProvider', '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+    .state('home', {
+      url: '/',
+      controller: 'Home',
+      templateUrl: 'partials/home.html'
+    })
+    .state('lobby', {
+      url: '/lobby',
+      controller: 'Lobby',
+      templateUrl: 'partials/lobby.html'
+    });
+    $urlRouterProvider.otherwise('/');
+  }]
+);

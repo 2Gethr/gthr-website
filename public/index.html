@@ -4,21 +4,15 @@
   <title>2Gethr</title>
   <link rel="stylesheet" href="css/main.css"/>
 </head>
-<body>
-  <h1>Hey, you!<br/>Hello... I guess.</h1>
-  <p>You better <strong>check</strong> your browser's console.</p>
-  <br/>
-  <p>Is the background <strong>#5EAA63</strong>? Yes..? Nice!</p>
-  <p>CSS files are served :)</p>
-  <br/>
-  <p>These were all delivered by <strong>Go</strong>.</p>
-  <br/>
-  <p>Thank you.</p>
-  <br/>
-  <p>#2gethr #microservices #itsalive #letsgathertogether #morganfreeman #hashtag</p>
+<body ng-app="gthr">
+  <h1>2Gethr</h1>
 
-  <!-- Do you really need to watch the page source ? -->
+  <div ui-view></div>
 
+  <script src="components/angular/angular.min.js"></script>
+  <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="components/angular-google-gapi/angular-google-gapi.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
 </body>
 </html>

@@ -2,13 +2,17 @@
 
 It's the 2Gethr website.
 
-## Under the hood
-
-A (tiny) [Go](https://golang.org/) server to deliver static content (html, js, css..). Super fast!
-
-Then everything is built with AngularJS and our [API](https://github.com/2Gethr/gthr-api).
-
 ## Development
+
+First install dependencies with **Bower**:
+
+`bower install`
+
+If you don't have Bower, install it this way:
+
+`npm install -g bower`
+
+You may need to run this with root privileges. If you don't have npm... Well. You should in Web development. It's shipped with Node.js anyway.
 
 You can start the Go server in your `localhost:8080` :
 
