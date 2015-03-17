@@ -6,8 +6,7 @@
 var routeApp = angular.module('routeApp', [
     // Dépendances du "module"
     'ngRoute',
-    'routeAppControllers',
-	'satellizer'
+    'routeAppControllers'
 ]);
 
 /**
@@ -75,23 +74,6 @@ routeAppControllers.controller('joinCtrl', ['$scope',
         $scope.title = "Join a party";
     }
 ]);
-
-routeApp.config(function($authProvider) {
-
-
-    $authProvider.google({
-      clientId: '631036554609-v5hm2amv4pvico3asfi97f54sc51ji4o.apps.googleusercontent.com'
-    });
-
-    $authProvider.oauth2({
-      name: 'foursquare',
-      url: '/auth/foursquare',
-      redirectUri: window.location.origin,
-      clientId: 'MTCEJ3NGW2PNNB31WOSBFDSAD4MTHYVAZ1UKIULXZ2CVFC2K',
-      authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate',
-    });
-
-  });
 
 
 
