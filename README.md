@@ -4,11 +4,11 @@ It's the 2Gethr website.
 
 ## Development
 
-First install dependencies with **Bower**:
+First install dependencies with **Bower** :
 
 `bower install`
 
-If you don't have Bower, install it this way:
+If you don't have Bower, install it this way :
 
 `npm install -g bower`
 
@@ -21,3 +21,7 @@ Then, you can start the Go server in your `localhost:8080` :
 The Go server is just here to be deployed on AppEngine :
 
 `goapp deploy`
+
+You don't have `goapp` ? Get it [here](https://cloud.google.com/appengine/docs/go/gettingstarted/devenvironment) !
+
+And obviously, you have to start the API in local too.

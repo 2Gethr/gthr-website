@@ -16,11 +16,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 app.run(function(GApi, GAuth) {
-  var BASE = 'https://mylazyclock.appspot.com/_ah/api';
-  var CLIENT = '1072024627812-oh4jdt3mo6rihojkt480tqfsja2706b4.apps.googleusercontent.com';
+  var BASE = '//localhost:9090/_ah/api';
+  var CLIENT = '369418797387-k8osj5ul8p1l3hcg7t9vbna1i94jm8ui.apps.googleusercontent.com';
 
-  GApi.load('myLazyClock','v1', BASE);
-  GApi.load('calendar','v3');
-
+  GApi.load('gthr','v1', BASE);
   GAuth.setClient(CLIENT);
 });

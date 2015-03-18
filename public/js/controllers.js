@@ -1,7 +1,7 @@
 app.controller('Home', function($scope, $state, GApi, GAuth) {
-  GAuth.login();
-  GApi.executeAuth('myLazyClock', 'alarmClock.list').then(function(resp) {
-    $scope.clocks = resp.items;
+  // Go GApi go !
+  GApi.execute('gthr', 'users.get', {name: 'Mireille'}).then(function(res) {
+    $scope.users = res.result;
   });
 });
 
