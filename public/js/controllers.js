@@ -6,11 +6,11 @@ app.controller('Landing', function($scope, $state, GAuth) {
   };
 });
 
-app.controller('Home', function($scope, $state, GApi, GAuth) {
-  $scope.user = {};
+app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth) {
 
   GApi.executeAuth('gthr', 'users.create').then(function(res) {
-    $scope.user = res.result;
+    $rootScope.user.subscriptions = res.subscriptions;
+    $rootScope.user.firstVisit = res.firstVisit;
   });
 
   $scope.logOut = function() {

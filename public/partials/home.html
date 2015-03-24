@@ -1,5 +1,7 @@
 <h2>This. is. home.</h2>
-<p>Hi {{user.user.nickname}} !</p>
+<p>Hi {{user.name}} !</p>
+<p>{{user.subscriptions}}</p>
+<p>{{user.firstVisit}}</p>
 <p ng-show="user.firstVisit">This is your first visit !</p>
 <p ng-hide="user.firstVisit">This is NOT your first visit. Welcome back !</p>
 

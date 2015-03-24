@@ -16,7 +16,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
 });
 
-app.run(function($state, GApi, GAuth) {
+app.run(function($rootScope, $state, GApi, GAuth) {
   var BASE = '//localhost:9090/_ah/api';
   var CLIENT = '369418797387-k8osj5ul8p1l3hcg7t9vbna1i94jm8ui.apps.googleusercontent.com';
 
@@ -29,8 +29,9 @@ app.run(function($state, GApi, GAuth) {
 
   GAuth.checkAuth()
   .then(function() {
-    $state.go('home');
+    $rootScope.user = $rootScope.gapi.user;
+    //$state.go('home');
   }, function() {
-    $state.go('landing');
+    //$state.go('landing');
   });
 });
