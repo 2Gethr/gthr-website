@@ -1,4 +1,4 @@
-var app = angular.module('gthr', ['ui.router', 'angular-google-gapi']);
+var app = angular.module('gthr', ['ui.router', 'angular-google-gapi', 'uiGmapgoogle-maps', 'geolocation']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -35,3 +35,11 @@ app.run(function($rootScope, $state, GApi, GAuth) {
     //$state.go('landing');
   });
 });
+
+app.config(function(uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    //    key: 'your api key',
+    v: '3.17',
+    libraries: 'weather,geometry,visualization'
+  });
+})
