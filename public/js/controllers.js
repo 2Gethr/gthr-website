@@ -17,7 +17,9 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
   }
 
   GApi.executeAuth('gthr', 'users.create').then(function(res) {
-    $rootScope.user.subscriptions = res.subscriptions;
+    GApi.executeAuth('gthr', 'users.subscriptions').then(function(res) {
+      $rootScope.user.subscriptions = res.items;
+    });
     $rootScope.user.firstVisit = res.firstVisit;
   });
 
