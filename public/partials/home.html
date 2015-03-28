@@ -27,15 +27,11 @@
 </nav>
 
 <ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds">
-
   <ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="'onClick'">
-
     <ui-gmap-windows show="show" >
       <div ng-non-bindable>{{name}}</div>
     </ui-gmap-windows>
-
   </ui-gmap-markers>
-
 </ui-gmap-google-map>
 
 <p>{{user.subscriptions}}</p>

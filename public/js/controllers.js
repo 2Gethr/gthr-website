@@ -8,6 +8,7 @@ app.controller('Landing', function($scope, $state, GAuth) {
 
 app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geolocation) {
   $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
+  $scope.locations = [];
 
   $scope.logOut = function() {
     GAuth.logout().then(function() {
