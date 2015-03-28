@@ -1,29 +1,45 @@
-<nav class="navbar navbar-default topnav" role="navigation">
-  <div class="container topnav">
+<nav class="navbar navbar-default topnav">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        </button>
-      <a class="navbar-brand topnav" ui-sref="home">2Gethr</a>
+      </button>
+      <a ui-sref="home" class="navbar-brand">2Gethr</a>
     </div>
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a ui-sref="home">{{user.name}}</a>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            {{user.name}}<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="" ng-click="logOut()">Log out</a></li>
+          </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<ui-gmap-google-map center="map.center" zoom="map.zoom"></ui-gmap-google-map>
+<ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds">
+
+  <ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="'onClick'">
+
+    <ui-gmap-windows show="show" >
+      <div ng-non-bindable>{{name}}</div>
+    </ui-gmap-windows>
+
+  </ui-gmap-markers>
+
+</ui-gmap-google-map>
+
 <p>{{user.subscriptions}}</p>
-<p>{{user.firstVisit}}</p>
 <p ng-show="user.firstVisit">This is your first visit !</p>
 <p ng-hide="user.firstVisit">This is NOT your first visit. Welcome back !</p>
 
-
-<button ng-click="logOut()">Log Out</button>
+<p>{{locations}}</p>

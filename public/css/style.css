@@ -9,7 +9,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  background: url(../img/intro-bg.jpg) center center;
+  background: #bd3636;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {

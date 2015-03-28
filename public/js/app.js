@@ -35,10 +35,3 @@ app.run(function($rootScope, $state, GApi, GAuth) {
     //$state.go('landing');
   });
 });
-
-app.config(function(uiGmapGoogleMapApiProvider) {
-  uiGmapGoogleMapApiProvider.configure({
-    v: '3.17',
-    libraries: 'weather,geometry,visualization'
-  });
-})
