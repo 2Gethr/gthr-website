@@ -38,7 +38,6 @@ app.run(function($rootScope, $state, GApi, GAuth) {
 
 app.config(function(uiGmapGoogleMapApiProvider) {
   uiGmapGoogleMapApiProvider.configure({
-    //    key: 'your api key',
     v: '3.17',
     libraries: 'weather,geometry,visualization'
   });
