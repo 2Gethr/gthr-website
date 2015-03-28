@@ -1,6 +1,8 @@
 # 2Gethr website
 
-It's the 2Gethr website.
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/1422403/6880709/97df24f4-d540-11e4-8af5-3b8f0aa9b8c2.png"/>
+</p>
 
 ## Development
 
