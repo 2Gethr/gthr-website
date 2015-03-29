@@ -7,7 +7,8 @@ app.controller('Landing', function($scope, $state, GAuth) {
 });
 
 app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geolocation) {
-  $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
+  $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 15};
+  $scope.mapOptions = {disableDefaultUI: true};
   $scope.locations = [];
   $scope.ready = false;
 
@@ -25,6 +26,7 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
    */
   $scope.subscribe = function(locationId) {
     GApi.executeAuth('gthr', 'users.subscribe', {locationId: locationId});
+    $rootScope.user.subscriptions.push(_.find($scope.locations, {id: locationId}));
   }
 
   /**
@@ -32,11 +34,14 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
    */
   $scope.unsubscribe = function(locationId) {
     GApi.executeAuth('gthr', 'users.unsubscribe', {locationId: locationId});
+    $rootScope.user.subscriptions = _.filter($rootScope.user.subscriptions, function(n) {
+      return n.id !== locationId;
+    });
   }
 
   GApi.executeAuth('gthr', 'users.create').then(function(res) {
     GApi.executeAuth('gthr', 'users.subscriptions').then(function(res) {
-      $rootScope.user.subscriptions = res.items;
+      $rootScope.user.subscriptions = res.items || [];
       $scope.ready = true;
     });
     $rootScope.user.firstVisit = res.firstVisit;
@@ -62,6 +67,6 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
 
   // Get user geolocation to update the map
   geolocation.getLocation().then(function(data) {
-    $scope.map = {center: {latitude: data.coords.latitude, longitude: data.coords.longitude}, zoom: 8};
+    $scope.map = {center: {latitude: data.coords.latitude, longitude: data.coords.longitude}, zoom: 15};
   });
 });

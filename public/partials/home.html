@@ -55,15 +55,22 @@
 
       <!-- SUBSCRIPTIONS LIST -->
       <div class="ui cards">
-        <div class="ui card" ng-repeat="sub in user.subscriptions">
+        <div class="ui card" ng-repeat="sub in user.subscriptions track by $index">
           <div class="content">
             <div class="header">
               <img src="img/favicon.png" class="ui avatar image">
               {{sub.name}}
             </div>
           </div>
+
+          <!-- VIEW ON MAP -->
+          <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-show="showOnMap" options="mapOptions">
+            <ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="'onClick'">
+            </ui-gmap-markers>
+          </ui-gmap-google-map>
+
           <div class="ui two bottom attached buttons">
-            <div class="ui button">
+            <div class="ui button" ng-click="showOnMap = !showOnMap">
               View on map
             </div>
             <div class="ui red button" ng-click="unsubscribe(sub.id)">
@@ -76,7 +83,7 @@
 
     <div class="seven wide column">
       <h2 class="ui header">
-        Places
+        Nearby places
       </h2>
 
       <!-- NO PLACES -->
@@ -95,37 +102,19 @@
       <!-- PLACES LIST -->
       <div class="ui cards">
         <div class="ui card" ng-repeat="location in locations">
+
           <div class="content">
             <div class="header">
               <img src="img/favicon.png" class="ui avatar image">
               {{location.name}}
             </div>
           </div>
-          <div class="ui two bottom attached buttons">
             <div class="ui button" ng-click="subscribe(location.id)">
               Subscribe
             </div>
-            <div class="ui red disabled button">
-              Unsubscribe
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
   </div>
 </div>
-
-<!--
-<p>{{user.subscriptions}}</p>
-<p ng-show="user.firstVisit">This is your first visit !</p>
-<p ng-hide="user.firstVisit">This is NOT your first visit. Welcome back !</p>-->
-<!--
-<ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds">
-  <ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="'onClick'">
-    <ui-gmap-windows show="show" >
-      <div ng-non-bindable>{{name}}</div>
-    </ui-gmap-windows>
-  </ui-gmap-markers>
-</ui-gmap-google-map>
--->
