@@ -58,20 +58,16 @@
         <div class="ui card" ng-repeat="sub in user.subscriptions track by $index">
           <div class="content">
             <div class="header">
-              <img src="img/favicon.png" class="ui avatar image">
+              <img src="{{user.picture}}" class="ui avatar image">
               {{sub.name}}
             </div>
           </div>
 
-          <!-- VIEW ON MAP -->
-          <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-show="showOnMap" options="mapOptions">
-            <ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="'onClick'">
-            </ui-gmap-markers>
-          </ui-gmap-google-map>
+
 
           <div class="ui two bottom attached buttons">
-            <div class="ui button" ng-click="showOnMap = !showOnMap">
-              View on map
+            <div class="ui disabled button">
+              Subscribe
             </div>
             <div class="ui red button" ng-click="unsubscribe(sub.id)">
               Unsubscribe
@@ -105,13 +101,26 @@
 
           <div class="content">
             <div class="header">
-              <img src="img/favicon.png" class="ui avatar image">
+              <img src="img/placesMarker.png" class="ui avatar image">
               {{location.name}}
             </div>
           </div>
-            <div class="ui button" ng-click="subscribe(location.id)">
+
+          <!-- VIEW ON MAP -->
+          <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-show="showOnMap" options="mapOptions">
+            <ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="'onClick'">
+            </ui-gmap-markers>
+          </ui-gmap-google-map>
+
+          <div class="ui two bottom attached buttons">
+            <div class="ui green button" ng-click="subscribe(location.id)" ng-class="isSubscribeTo(location.id) ? 'disabled': ''">
               Subscribe
             </div>
+            <div class="ui button" ng-click="showOnMap = !showOnMap">
+              View on map
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

@@ -39,6 +39,16 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
     });
   }
 
+  /**
+   * Check if the user is subscribed to the given location
+   */
+  $scope.isSubscribeTo = function(locationId) {
+    var x = _.find($scope.user.subscriptions, {id: locationId});
+
+    if (x) return true;
+    return false;
+  }
+
   GApi.executeAuth('gthr', 'users.create').then(function(res) {
     GApi.executeAuth('gthr', 'users.subscriptions').then(function(res) {
       $rootScope.user.subscriptions = res.items || [];
