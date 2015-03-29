@@ -9,16 +9,35 @@ app.controller('Landing', function($scope, $state, GAuth) {
 app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geolocation) {
   $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
   $scope.locations = [];
+  $scope.ready = false;
 
+  /**
+   * Log out the user
+   */
   $scope.logOut = function() {
     GAuth.logout().then(function() {
       $state.go('landing');
     })
   }
 
+  /**
+   * Subscribe the user to the given location
+   */
+  $scope.subscribe = function(locationId) {
+    GApi.executeAuth('gthr', 'users.subscribe', {locationId: locationId});
+  }
+
+  /**
+   * Unsubscribe the user from the given location
+   */
+  $scope.unsubscribe = function(locationId) {
+    GApi.executeAuth('gthr', 'users.unsubscribe', {locationId: locationId});
+  }
+
   GApi.executeAuth('gthr', 'users.create').then(function(res) {
     GApi.executeAuth('gthr', 'users.subscriptions').then(function(res) {
       $rootScope.user.subscriptions = res.items;
+      $scope.ready = true;
     });
     $rootScope.user.firstVisit = res.firstVisit;
   });
