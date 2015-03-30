@@ -107,9 +107,9 @@
           </div>
 
           <!-- VIEW ON MAP -->
-          <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-show="showOnMap" options="mapOptions">
-            <ui-gmap-markers models="locations" coords="'self'" icon="'icon'" click="'onClick'">
-            </ui-gmap-markers>
+          <ui-gmap-google-map center="location.map.center" zoom="location.map.zoom" ng-if="showOnMap" options="mapOptions">
+            <ui-gmap-marker coords="location" idKey="location.id">
+            </ui-gmap-marker>
           </ui-gmap-google-map>
 
           <div class="ui two bottom attached buttons">

@@ -7,7 +7,6 @@ app.controller('Landing', function($scope, $state, GAuth) {
 });
 
 app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geolocation) {
-  $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 15};
   $scope.mapOptions = {disableDefaultUI: true};
   $scope.locations = [];
   $scope.ready = false;
@@ -63,20 +62,17 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
         id: location.id,
         latitude: location.lat,
         longitude: location.lng,
-        name: location.name,
-        show: false
+        name: location.name
       };
 
-      l.onClick = function() {
-        l.show = !l.show;
-      }
+      l.map = {center: {latitude: location.lat, longitude: location.lng}, zoom: 15};
 
       return l;
     });
   });
 
   // Get user geolocation to update the map
-  geolocation.getLocation().then(function(data) {
-    $scope.map = {center: {latitude: data.coords.latitude, longitude: data.coords.longitude}, zoom: 15};
-  });
+  //geolocation.getLocation().then(function(data) {
+    //$scope.map = {center: {latitude: data.coords.latitude, longitude: data.coords.longitude}, zoom: 15};
+  //});
 });
