@@ -9,11 +9,27 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  background: url(../img/intro-bg.jpg) center center;
+  background: #bd3636;
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
-  color: #fff;
+a, a:hover {
+  color: #bd3636;
+}
+
+.angular-google-map-container {
+  height: 150px;
+}
+
+.ui.secondary.menu {
+  background: #bd3636;
+}
+
+.ui.menu .item {
+  color: white;
+}
+
+.ui.secondary.pointing.menu>.item.active, .ui.secondary.pointing.menu>.menu>.item.active {
+  color: white;
 }
 
 .navbar-default .navbar-brand:hover {
@@ -166,5 +182,3 @@ footer {
 p.copyright {
   margin: 15px 0 0;
 }
-
-.angular-google-map-container { height: 400px; }

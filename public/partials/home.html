@@ -1,29 +1,129 @@
-<nav class="navbar navbar-default topnav" role="navigation">
-  <div class="container topnav">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        </button>
-      <a class="navbar-brand topnav" ui-sref="home">2Gethr</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a ui-sref="home">{{user.name}}</a>
-        </li>
-      </ul>
+<div class="ui grid">
+
+  <div class="sixteen wide column">
+    <div class="ui secondary pointing menu">
+      <a class="active item">
+        <i class="home icon"></i> 2Gethr
+      </a>
+      <a class="item">
+        <div class="ui green label">{{user.subscriptions.length || 0}}</div> Subscriptions
+      </a>
+      <a class="item">
+        <i class="find icon"></i>
+        Find places
+      </a>
+
+      <div class="right menu">
+        <a class="item">
+          <i class="help icon"></i>
+          Help
+        </a>
+        <div class="ui simple dropdown item">
+          {{user.name}}
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item">Settings</a>
+            <a class="item" ng-click="logOut()">Logout</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
 
-<ui-gmap-google-map center="map.center" zoom="map.zoom"></ui-gmap-google-map>
-<p>{{user.subscriptions}}</p>
-<p>{{user.firstVisit}}</p>
-<p ng-show="user.firstVisit">This is your first visit !</p>
-<p ng-hide="user.firstVisit">This is NOT your first visit. Welcome back !</p>
+  <div class="ui stackable grid" ng-show="ready">
+
+    <div class="one wide column"></div>
+    <div class="seven wide column">
+
+      <h2 class="ui header">
+        Your subscriptions
+      </h2>
+
+      <!-- NO SUBSCRIPTIONS -->
+      <div class="ui card" ng-hide="user.subscriptions.length">
+        <div class="content">
+          <div class="header">
+            You have no subscriptions
+          </div>
+          <div class="meta">:(</div>
+          <div class="description">
+            <p>To fix it, find a place you like and click on "Subscribe". And you are all set!</p>
+            <p>Any problem? Let us <a ui-sref="home">help</a> you.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBSCRIPTIONS LIST -->
+      <div class="ui cards">
+        <div class="ui card" ng-repeat="sub in user.subscriptions track by $index">
+          <div class="content">
+            <div class="header">
+              <img src="{{user.picture}}" class="ui avatar image">
+              {{sub.name}}
+            </div>
+          </div>
 
 
-<button ng-click="logOut()">Log Out</button>
+
+          <div class="ui two bottom attached buttons">
+            <div class="ui disabled button">
+              Subscribe
+            </div>
+            <div class="ui red button" ng-click="unsubscribe(sub.id)">
+              Unsubscribe
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seven wide column">
+      <h2 class="ui header">
+        Nearby places
+      </h2>
+
+      <!-- NO PLACES -->
+      <div class="ui card" ng-hide="locations.length">
+        <div class="content">
+          <div class="header">
+            There are no locations
+          </div>
+          <div class="meta">:(</div>
+          <div class="description">
+            <p>WTF ?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACES LIST -->
+      <div class="ui cards">
+        <div class="ui card" ng-repeat="location in locations">
+
+          <div class="content">
+            <div class="header">
+              <img src="img/placesMarker.png" class="ui avatar image">
+              {{location.name}}
+            </div>
+          </div>
+
+          <!-- VIEW ON MAP -->
+          <ui-gmap-google-map center="location.map.center" zoom="location.map.zoom" ng-if="showOnMap" options="mapOptions">
+            <ui-gmap-marker coords="location" idKey="location.id">
+            </ui-gmap-marker>
+          </ui-gmap-google-map>
+
+          <div class="ui two bottom attached buttons">
+            <div class="ui green button" ng-click="subscribe(location.id)" ng-class="isSubscribeTo(location.id) ? 'disabled': ''">
+              Subscribe
+            </div>
+            <div class="ui button" ng-click="showOnMap = !showOnMap">
+              View on map
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
