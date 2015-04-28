@@ -1,7 +1,8 @@
-app.controller('Landing', function($scope, $state, GAuth) {
+app.controller('Landing', function($rootScope, $scope, $state, GAuth) {
   $scope.signIn = function() {
     GAuth.login().then(function() {
       $state.go('home');
+      $rootScope.user = $rootScope.gapi.user;
     });
   };
 });
