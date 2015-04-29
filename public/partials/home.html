@@ -30,97 +30,121 @@
     </div>
   </div>
 
-  <div class="ui stackable grid" ng-show="ready">
+  <div id="sub" ng-hide="admin">
+    <div class="ui stackable grid" ng-show="ready">
 
-    <div class="one wide column"></div>
-    <div class="seven wide column">
+      <div class="one wide column"></div>
+      <div class="seven wide column">
 
-      <h2 class="ui header">
-        Your subscriptions
-      </h2>
+        <h2 class="ui header">
+          Your subscriptions
+        </h2>
 
-      <!-- NO SUBSCRIPTIONS -->
-      <div class="ui card" ng-hide="user.subscriptions.length">
-        <div class="content">
-          <div class="header">
-            You have no subscriptions
+        <!-- NO SUBSCRIPTIONS -->
+        <div class="ui card" ng-hide="user.subscriptions.length">
+          <div class="content">
+            <div class="header">
+              You have no subscriptions
+            </div>
+            <div class="meta">:(</div>
+            <div class="description">
+              <p>To fix it, find a place you like and click on "Subscribe". And you are all set!</p>
+              <p>Any problem? Let us <a ui-sref="home">help</a> you.</p>
+            </div>
           </div>
-          <div class="meta">:(</div>
-          <div class="description">
-            <p>To fix it, find a place you like and click on "Subscribe". And you are all set!</p>
-            <p>Any problem? Let us <a ui-sref="home">help</a> you.</p>
+        </div>
+
+        <!-- SUBSCRIPTIONS LIST -->
+        <div class="row" ng-repeat="sub in user.subscriptions track by $index" style="margin-bottom: 20px;">
+          <div class="ui card">
+            <div class="content">
+              <div class="header">
+                <img src="{{user.picture}}" class="ui avatar image">
+                {{sub.name}}
+              </div>
+            </div>
+
+            <div class="ui two bottom attached buttons">
+              <div class="ui disabled button">
+                Subscribe
+              </div>
+              <div class="ui red button" ng-click="unsubscribe(sub.id)">
+                Unsubscribe
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- SUBSCRIPTIONS LIST -->
-      <div class="row" ng-repeat="sub in user.subscriptions track by $index" style="margin-bottom: 20px;">
-        <div class="ui card">
+      <div class="seven wide column">
+        <h2 class="ui header">
+          Nearby places
+        </h2>
+
+        <!-- NO PLACES -->
+        <div class="ui card" ng-hide="locations.length">
           <div class="content">
             <div class="header">
-              <img src="{{user.picture}}" class="ui avatar image">
-              {{sub.name}}
+              There are no locations
+            </div>
+            <div class="meta">:(</div>
+            <div class="description">
+              <p>WTF ?</p>
             </div>
           </div>
+        </div>
 
-          <div class="ui two bottom attached buttons">
-            <div class="ui disabled button">
-              Subscribe
+        <!-- PLACES LIST -->
+        <div class="row" ng-repeat="location in locations" style="margin-bottom: 20px;">
+          <div class="ui card">
+
+            <div class="content">
+              <div class="header">
+                <img src="img/placesMarker.png" class="ui avatar image">
+                {{location.name}}
+              </div>
             </div>
-            <div class="ui red button" ng-click="unsubscribe(sub.id)">
-              Unsubscribe
+
+            <!-- VIEW ON MAP -->
+            <ui-gmap-google-map center="location.map.center" zoom="location.map.zoom" ng-if="showOnMap" options="mapOptions">
+              <ui-gmap-marker coords="location" idKey="location.id">
+              </ui-gmap-marker>
+            </ui-gmap-google-map>
+
+            <div class="ui two bottom attached buttons">
+              <div class="ui green button" ng-click="subscribe(location.id)" ng-class="isSubscribeTo(location.id) ? 'disabled': ''">
+                Subscribe
+              </div>
+              <div class="ui button" ng-click="showOnMap = !showOnMap">
+                View on map
+              </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-
-    <div class="seven wide column">
+    
+    <div id="admin" ng-show="admin">
       <h2 class="ui header">
-        Nearby places
+        Administration - Nouvel évênement
       </h2>
-
-      <!-- NO PLACES -->
-      <div class="ui card" ng-hide="locations.length">
-        <div class="content">
-          <div class="header">
-            There are no locations
-          </div>
-          <div class="meta">:(</div>
-          <div class="description">
-            <p>WTF ?</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PLACES LIST -->
-      <div class="row" ng-repeat="location in locations" style="margin-bottom: 20px;">
-        <div class="ui card">
-
-          <div class="content">
-            <div class="header">
-              <img src="img/placesMarker.png" class="ui avatar image">
-              {{location.name}}
-            </div>
-          </div>
-
-          <!-- VIEW ON MAP -->
-          <ui-gmap-google-map center="location.map.center" zoom="location.map.zoom" ng-if="showOnMap" options="mapOptions">
-            <ui-gmap-marker coords="location" idKey="location.id">
-            </ui-gmap-marker>
-          </ui-gmap-google-map>
-
-          <div class="ui two bottom attached buttons">
-            <div class="ui green button" ng-click="subscribe(location.id)" ng-class="isSubscribeTo(location.id) ? 'disabled': ''">
-              Subscribe
-            </div>
-            <div class="ui button" ng-click="showOnMap = !showOnMap">
-              View on map
-            </div>
-          </div>
-
-        </div>
-      </div>
+        
+      <form>
+        <label for="name">Nom de l'évênement</label></br/>
+        <input type="text" id="name" />
+        
+        <label for="location">Lieu</label><br />
+        <select id="location">
+          <option ng-reapeat="loc in locations">
+            {{loc.name}}
+          </option>
+        </select>
+        
+        <label for="date">Date</label>
+        <input type="date" id="date" />
+        
+      </form>
     </div>
 
   </div>

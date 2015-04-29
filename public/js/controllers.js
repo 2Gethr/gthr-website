@@ -11,6 +11,8 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
   $scope.mapOptions = {disableDefaultUI: true};
   $scope.locations = [];
   $scope.ready = false;
+  $scope.admin = false;
+  $scope.adminText = "Administration";
 
   /**
    * Log out the user
@@ -19,6 +21,22 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
     GAuth.logout().then(function() {
       $state.go('landing');
     })
+  }
+  
+  /**
+   * Get to the administration page
+   */
+  $scope.admin = function() {
+    if($scope.admin)
+    {
+      $scope.admin = false;
+      $scope.adminText = "Administration";
+    }
+    else
+    {
+      $scope.admin = true;
+      $scope.adminText = "Home";
+    }
   }
 
   /**
