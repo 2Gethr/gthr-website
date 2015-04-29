@@ -7,7 +7,7 @@ app.controller('Landing', function($rootScope, $scope, $state, GAuth) {
   };
 });
 
-app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geolocation) {
+app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geolocation, dateFilter) {
   $scope.mapOptions = {disableDefaultUI: true};
   $scope.locations = [];
   $scope.ready = false;
@@ -26,7 +26,7 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
   /**
    * Get to the administration page
    */
-  $scope.admin = function() {
+  $scope.goAdmin = function() {
     if($scope.admin)
     {
       $scope.admin = false;
@@ -46,7 +46,7 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
     nameEvent=document.getElementById('nameEvent').value;
     locationOption=document.getElementById('locationEvent');
     locationEvent=locationOption.options[locationOption.selectedIndex].value;
-    dateEvent=document.getElementById('dateEvent');
+    dateEvent=document.getElementById('dateEvent').value;
 
     if(nameEvent != null && locationEvent != null && dateEvent != null)
     {

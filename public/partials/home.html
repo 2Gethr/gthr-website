@@ -12,6 +12,9 @@
         <i class="find icon"></i>
         Find places
       </a>
+      <a class="item" ng-click="goAdmin()">
+        {{adminText}}
+      </a>
 
       <div class="right menu">
         <a class="item">
@@ -122,30 +125,42 @@
         </div>
       </div>
     </div>
+    </div>
     
-    <div id="admin" ng-show="admin">
+    <div class="ui stackable grid" ng-show="admin">
+
+      <div class="one wide column"></div>
+      <div class="seven wide column">
+
       <h2 class="ui header">
         Administration - Nouvel évênement
       </h2>
         
       <form>
+        <p>
         <label for="nameEvent">Nom de l'évênement</label></br/>
-        <input type="text" id="nameEvent" />
+        <input type="text" id="nameEvent" /> <br />
+        </p>
         
+        <p>
         <label for="locationEvent">Lieu</label><br />
         <select id="locationEvent">
-          <option ng-reapeat="loc in locations" value="{{loc.id}}">
-            {{loc.name}}
+          <option ng-repeat="location in locations" value="{{location.id}}">
+            {{location.name}}
           </option>
         </select>
+        </p>
         
+        <p>
         <label for="dateEvent">Date</label>
-        <input type="date" id="dateEvent" />
+        <input type="date" id="dateEvent" ng-model="dateString" />
+        </p>
         
-        <input type="button" ng-click="addEvent" />
+        <input type="button" value="Valider" ng-click="addEvent()" />
         
       </form>
     </div>
+  </div>
 
   </div>
 </div>
