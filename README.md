@@ -14,7 +14,7 @@ If you don't have Bower, install it this way :
 
 `npm install -g bower`
 
-You may need to run this with root privileges. If you don't have npm... Well. You should in Web development. It's shipped with Node.js anyway.
+You may need to run this with root privileges. If you don't have npm... Well. You should in Web development. It's shipped with Node.js anyway. You could also need the package 'nodejs-legacy'.
 
 Then, you can start the Go server in your `localhost:8080` :
 
