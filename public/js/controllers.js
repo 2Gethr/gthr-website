@@ -66,7 +66,7 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
         name: location.name
       };
 
-      l.map = {center: {latitude: location.lat, longitude: location.lng}, zoom: 15};
+      l.map = {center: {latitude: location.lat, longitude: location.lng}, zoom: 17};
 
       return l;
     });
