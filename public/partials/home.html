@@ -54,8 +54,8 @@
       </div>
 
       <!-- SUBSCRIPTIONS LIST -->
-      <div class="ui cards">
-        <div class="ui card" ng-repeat="sub in user.subscriptions track by $index">
+      <div class="row" ng-repeat="sub in user.subscriptions track by $index" style="margin-bottom: 20px;">
+        <div class="ui card">
           <div class="content">
             <div class="header">
               <img src="{{user.picture}}" class="ui avatar image">
@@ -94,8 +94,8 @@
       </div>
 
       <!-- PLACES LIST -->
-      <div class="ui cards">
-        <div class="ui card" ng-repeat="location in locations">
+      <div class="row" ng-repeat="location in locations" style="margin-bottom: 20px;">
+        <div class="ui card">
 
           <div class="content">
             <div class="header">
