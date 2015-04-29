@@ -38,6 +38,21 @@ app.controller('Home', function($rootScope, $scope, $state, GApi, GAuth, geoloca
       $scope.adminText = "Home";
     }
   }
+  
+  /**
+   * Add a new event
+   */ 
+  $scope.addEvent = function() {
+    nameEvent=document.getElementById('nameEvent').value;
+    locationOption=document.getElementById('locationEvent');
+    locationEvent=locationOption.options[locationOption.selectedIndex].value;
+    dateEvent=document.getElementById('dateEvent');
+
+    if(nameEvent != null && locationEvent != null && dateEvent != null)
+    {
+      GApi.executeAuth('gthr', 'events.create', {name:nameEvent, date:dateEvent, location:locationEvent});
+    }
+  }
 
   /**
    * Subscribe the user to the given location
