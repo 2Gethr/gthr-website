@@ -36,13 +36,13 @@ This project (both this repository and the api-repository) proposes :
   - Sign in with a google account
   - Subscribe to some locations (here locations are very precise but we could add "meta-location" like Nantes)
   - Add a new event with the administration page (for allow you to test it, any user can access it, but normally it would be restricted to administrators)
-- A working event activity : can be access at /event/ask.html
+- A working event activity : can be access at http://to-gethr-api.appspot.com/event/ask.html
 - A working notification for incoming event 
   - The notifications manager is checking for updates every hours using the cron services
-  - You can force it to check for updates at /services/notification.html
+  - You can force it to check for updates at http://to-gethr-api.appspot.com/services/notification.html
 
 ## What have not been done
 
 - More events, and specially more complex events with client/server communication (sending an answer, score calculation for example)
-- Starting the event at the right time for users that are at the right location : the only way to test an event is to go at /event/ask.html
+- Starting the event at the right time for users that are at the right location : the only way to test an event is to go at http://to-gethr-api.appspot.com/event/ask.html
 - History of the past event which you participated to - Scores and rewards
